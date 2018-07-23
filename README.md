@@ -7,74 +7,7 @@ the data come from an online challenge called **Multi-atlas labeling Beyond the 
 
 ## data management
 i use the trainging set given bt the competition organizer. The training set include 30 CT data.I randomly divided it into 25 for training and 5 for evaluation. and organize them as follow:
-
-.
-├── train  
-│   ├── CT  
-│   │   ├── img0001.nii  
-│   │   ├── img0002.nii  
-│   │   ├── img0003.nii  
-│   │   ├── img0004.nii  
-│   │   ├── img0005.nii  
-│   │   ├── img0006.nii  
-│   │   ├── img0008.nii  
-│   │   ├── img0009.nii  
-│   │   ├── img0010.nii  
-│   │   ├── img0021.nii  
-│   │   ├── img0022.nii  
-│   │   ├── img0023.nii  
-│   │   ├── img0025.nii  
-│   │   ├── img0026.nii  
-│   │   ├── img0027.nii  
-│   │   ├── img0028.nii  
-│   │   ├── img0029.nii  
-│   │   ├── img0031.nii  
-│   │   ├── img0032.nii  
-│   │   ├── img0033.nii  
-│   │   ├── img0034.nii  
-│   │   ├── img0035.nii  
-│   │   ├── img0036.nii  
-│   │   ├── img0038.nii  
-│   │   └── img0040.nii  
-│   └── GT  
-│       ├── label0001.nii  
-│       ├── label0002.nii  
-│       ├── label0003.nii  
-│       ├── label0004.nii  
-│       ├── label0005.nii  
-│       ├── label0006.nii  
-│       ├── label0008.nii  
-│       ├── label0009.nii  
-│       ├── label0010.nii  
-│       ├── label0021.nii  
-│       ├── label0022.nii  
-│       ├── label0023.nii  
-│       ├── label0025.nii  
-│       ├── label0026.nii  
-│       ├── label0027.nii  
-│       ├── label0028.nii  
-│       ├── label0029.nii  
-│       ├── label0031.nii  
-│       ├── label0032.nii  
-│       ├── label0033.nii  
-│       ├── label0034.nii  
-│       ├── label0035.nii  
-│       ├── label0036.nii  
-│       ├── label0038.nii  
-│       └── label0040.nii  
-└── val  
-    ├── CT  
-    │   ├── img0007.nii  
-    │   ├── img0024.nii  
-    │   ├── img0030.nii  
-    │   ├── img0037.nii  
-    │   └── img0039.nii  
-    └── GT  
-        ├── label0007.nii  
-        ├── label0024.nii  
-        ├── label0030.nii  
-        ├── label0037.nii  
-        └── label0039.nii  
+![img2]()
 
 ## data process
 
