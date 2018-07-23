@@ -7,7 +7,8 @@ the data come from an online challenge called **Multi-atlas labeling Beyond the 
 
 ## data management
 i use the trainging set given bt the competition organizer. The training set include 30 CT data.I randomly divided it into 25 for training and 5 for evaluation. and organize them as follow:
-![img2]()
+
+![img2](https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/data_management.png)
 
 ## data process
 
@@ -19,6 +20,8 @@ i use the trainging set given bt the competition organizer. The training set inc
 
 
 ## result
+i use mean dice
+
 |spleen|right kidney|left kidney|gallbladder|esophagus|liver|stomach|aorta|inferior vena cava|portal vein and splenic vein|pancreas|right adrenal gland|left adrenal gland|
 |-|-|-|-|-|-|-|-|-|-|-|-|-|
 
