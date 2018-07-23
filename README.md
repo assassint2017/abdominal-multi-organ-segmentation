@@ -1,13 +1,21 @@
 # abdominal-multi-organ-segmentation
-abdominal multi-organ segmentation using tensorflow
+abdominal multi-organ segmentation using pytorch
 
-
-**Multi-atlas labeling Beyond the Cranial Vault**
-**https://www.synapse.org/#!Synapse:syn3193805/wiki/217752**
+the data come from an online challenge called **Multi-atlas labeling Beyond the Cranial Vault**, for the detail, you can check this link:**https://www.synapse.org/#!Synapse:syn3193805/wiki/217752**.in this challenge, the task is to segement 13 different kind of organ as follow:
 
 ![img1](https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/abdomen_overview_small.png)
 
-## References
+## data management
+
+## data process
+
+## network architecture
+
+## implementation detail
+
+## result
+
+## references
 
 1. Roth H R, Shen C, Oda H, et al. A multi-scale pyramid of 3D fully convolutional networks for abdominal multi-organ segmentation[J]. arXiv preprint arXiv:1806.02237, 2018.
 
