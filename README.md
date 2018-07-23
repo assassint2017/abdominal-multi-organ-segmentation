@@ -6,7 +6,7 @@ the data come from an online challenge called **Multi-atlas labeling Beyond the 
 ![img1](https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/abdomen_overview_small.png)
 
 ## data management
-i use the trainging set given bt the competition organizer. The training set include 30 CT data.I randomly divided it into 25 for training and 5 for evaluation. and organize them as follow:
+i use the trainging set given by the competition organizer. The training set include 30 CT data.I randomly divided it into 25 for training and 5 for evaluation. and organize them as follow:
 
 ![img2](https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/data_management.png)
 
