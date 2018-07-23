@@ -11,19 +11,17 @@ i use the trainging set given bt the competition organizer. The training set inc
 ![img2](https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/data_management.png)
 
 ## data process
-
+i normalized the axial spacing to 3mm. and truncated the hu value to a certain range. only the slice contain organ are used to train the network.
 
 ## network architecture
-
+i use two u-shape like 3D FCN, and add residual connection at a group of convlayers. In order to increase the receptive field，i add some hybrid dilated convlayer to the last stage of the encoder.most idea come form [1].
 
 ## implementation detail
 
 
 ## result
-i use mean dice
+i use mean dice coefficient as metrics.
 
-|spleen|right kidney|left kidney|gallbladder|esophagus|liver|stomach|aorta|inferior vena cava|portal vein and splenic vein|pancreas|right adrenal gland|left adrenal gland|
-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 
 ## references
 1. Roth H R, Shen C, Oda H, et al. A multi-scale pyramid of 3D fully convolutional networks for abdominal multi-organ segmentation[J]. arXiv preprint arXiv:1806.02237, 2018.
