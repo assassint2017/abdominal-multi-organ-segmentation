@@ -32,6 +32,8 @@ i use mean dice coefficient as metrics.
 Here is the best of the above results:
 <div align=center><img src="https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/bset.png"alt="最好结果三维展示图"/></div>
 
+you can copy the value in bset_result.xlsx to show.xlsx to get the above picture
+
 ## TODO:
 - [X] other loss function
 - [ ] data augmentation
