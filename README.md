@@ -23,7 +23,7 @@ i use adam optim and set the initial learning rate to 1e-4, train on three GTX 1
 i use mean dice coefficient as metrics.
 
 |strategy|spleen|right kidney|left kidney|gallbladder|esophagus|liver|stomach|aorta|inferior vena cava|portal vein and splenic vein|pancreas|right adrenal gland|left adrenal gland|
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |ava_dice_loss|0.830|0.745|0.712|0.143|0.000|0.880|0.654|0.686|0.605|0.500|0.429|0.089|0.111|
 |ava_dice_loss_with_bg|0.000|0.793|0.753|0.202|0.268|0.865|0.586|0.474|0.344|0.001|0.466|0.126|0.196|
 |genernalised_dice_loss|---|---|---|---|---|---|---|---|---|---|---|---|---|
