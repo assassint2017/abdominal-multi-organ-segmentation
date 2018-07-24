@@ -21,7 +21,7 @@ on_server = True
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0' if on_server is False else '1,2,3'
 cudnn.benchmark = True
-Epoch = 1000
+Epoch = 3000
 leaing_rate = 1e-4
 
 batch_size = 1 if on_server is False else 3
