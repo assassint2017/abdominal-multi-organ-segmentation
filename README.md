@@ -30,7 +30,7 @@ i use mean dice coefficient as metrics.
 |genernalised_dice_loss|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |genernalised_dice_loss_with_weight|---|---|---|---|---|---|---|---|---|---|---|---|---|
 
-### TODO:
+## TODO:
 - [ ] other loss function
 - [ ] data augmentation
 
