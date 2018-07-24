@@ -3,7 +3,7 @@ abdominal multi-organ segmentation using pytorch
 
 the data come from an online challenge called **Multi-atlas labeling Beyond the Cranial Vault**, for the detail, you can check this link:**https://www.synapse.org/#!Synapse:syn3193805/wiki/217752**. in this challenge, the task is to segement 13 different kind of organ as follow:
 
-<div align=center>![img1](https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/abdomen_overview_small.png)</div>
+<div align=center><img src="https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/abdomen_overview_small.png"/></div>
 
 ## data management
 i use the trainging set given by the competition organizer. The training set include 30 CT data.I randomly divided it into 25 for training and 5 for evaluation. and organize them as follow:
