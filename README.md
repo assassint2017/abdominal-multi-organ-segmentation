@@ -30,7 +30,7 @@ i use mean dice coefficient as metrics.
 |genernalised_dice_loss_with_weight|---|---|---|---|---|---|---|---|---|---|---|---|---|
 
 Here is the best of the above results:
-<div align=center><img src="https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/data_management.png"alt="数据管理示意图"/></div>
+<div align=center><img src="https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/bset.png"alt="最好结果三维展示图"/></div>
 
 ## TODO:
 - [ ] other loss function
