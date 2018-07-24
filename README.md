@@ -26,7 +26,9 @@ i use mean dice coefficient as metrics.
 ||spleen|right kidney|left kidney|gallbladder|esophagus|liver|stomach|aorta|inferior vena cava|portal vein and splenic vein|pancreas|right adrenal gland|left adrenal gland|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |ava_dice_loss|0.830|0.745|0.712|0.143|0.000|0.880|0.654|0.686|0.605|0.500|0.429|0.089|0.111|
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|ava_dice_loss_with_bg|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|genernalised_dice_loss|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|genernalised_dice_loss_with_weight|---|---|---|---|---|---|---|---|---|---|---|---|---|
 
 
 ## references
