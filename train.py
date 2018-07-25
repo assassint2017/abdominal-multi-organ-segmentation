@@ -54,7 +54,7 @@ for epoch in range(Epoch):
 
         ct = ct.cuda()
         ct = Variable(ct)
-        
+
         outputs_stage1, outputs_stage2 = net(ct)
         loss = loss_func(outputs_stage1, outputs_stage2, seg)
 

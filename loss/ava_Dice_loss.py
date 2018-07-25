@@ -44,6 +44,7 @@ class DiceLoss(nn.Module):
             dice_stage1 += 2 * (pred_stage1[:, organ_index, :, :, :] * organ_target[:, organ_index - 1, :, :, :]).sum(dim=1).sum(dim=1).sum(
                 dim=1) / (pred_stage1[:, organ_index, :, :, :].pow(2).sum(dim=1).sum(dim=1).sum(dim=1) +
                           organ_target[:, organ_index - 1, :, :, :].pow(2).sum(dim=1).sum(dim=1).sum(dim=1) + 1e-5)
+
         dice_stage1 /= num_organ
 
         # 计算第二阶段的loss
@@ -53,6 +54,7 @@ class DiceLoss(nn.Module):
 
             dice_stage2 += 2 * (pred_stage2[:, organ_index, :, :, :] * organ_target[:, organ_index - 1, :, :, :]).sum(dim=1).sum(dim=1).sum(dim=1) / (pred_stage2[:, organ_index, :, :, :].pow(2).sum(dim=1).sum(dim=1).sum(dim=1) +
                                                 organ_target[:, organ_index - 1, :, :, :].pow(2).sum(dim=1).sum(dim=1).sum(dim=1) + 1e-5)
+
         dice_stage2 /= num_organ
 
         # 将两部分的loss加在一起
