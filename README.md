@@ -26,8 +26,11 @@ i use mean dice coefficient as metrics.
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |ava_dice_loss|0.830|0.745|0.712|0.143|0.000|0.880|0.654|0.686|0.605|0.500|0.429|0.089|0.111|
 |ava_dice_loss_with_bg|0.000|0.793|0.753|0.202|0.268|0.865|0.586|0.474|0.344|0.001|0.466|0.126|0.196|
-|genernalised_dice_loss|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|genernalised_dice_loss_with_weight|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|genernalised_dice_loss|very bad|---|---|---|---|---|---|---|---|---|---|---|
+|genernalised_dice_loss_with_weight|very bad|---|---|---|---|---|---|---|---|---|---|---|---|
+|ava_dice_loss_with_augmentation|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|ce_loss|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|Focal_loss|---|---|---|---|---|---|---|---|---|---|---|---|---|
 
 Here is the best of the above results:
 <div align=center><img src="https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/bset.png"alt="最好结果三维展示图"/></div>
@@ -36,7 +39,7 @@ you can copy the value in bset_result.xlsx to show.xlsx to get the above picture
 
 ## TODO:
 - [X] other loss function
-- [ ] data augmentation
+- [X] data augmentation
 
 ## references
 1. Roth H R, Shen C, Oda H, et al. A multi-scale pyramid of 3D fully convolutional networks for abdominal multi-organ segmentation[J]. arXiv preprint arXiv:1806.02237, 2018.
