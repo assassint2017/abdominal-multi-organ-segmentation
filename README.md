@@ -28,14 +28,17 @@ i use mean dice coefficient as metrics.
 |ava_dice_loss_with_bg|0.000|0.793|0.753|0.202|0.268|0.865|0.586|0.474|0.344|0.001|0.466|0.126|0.196|
 |genernalised_dice_loss|very bad|---|---|---|---|---|---|---|---|---|---|---|
 |genernalised_dice_loss_with_weight|very bad|---|---|---|---|---|---|---|---|---|---|---|---|
-|ava_dice_loss_with_augmentation|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|ava_dice_loss_with_data_augmentation|0.834|0.763|0.743|0.215|0.203|0.845|0.466|0.002|0.572|0.517|0.481|0.000|0.187|
+|ava_dice_loss_with_norm|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |ce_loss|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |Focal_loss|---|---|---|---|---|---|---|---|---|---|---|---|---|
 
-Here is the best of the above results:
+i try different kind of loss functinon,and for data augmentation,i use random rotate and random scale."with norm"mean i normalized the origin ct-hu value to a small range:form ±350 to ±5
+
+**Here is the best of the above results:**
 <div align=center><img src="https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/bset.png"alt="最好结果三维展示图"/></div>
 
-you can copy the value in bset_result.xlsx to show.xlsx to get the above picture
+**you can copy the value in bset_result.xlsx to show.xlsx to get the above picture**
 
 ## TODO:
 - [X] other loss function
