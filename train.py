@@ -1,5 +1,4 @@
 """
-
 训练脚本
 """
 
@@ -8,7 +7,6 @@ from time import time
 
 import torch
 import torch.backends.cudnn as cudnn
-from torch.autograd import Variable
 from torch.utils.data import DataLoader
 
 from net.ResUnet import net
@@ -53,7 +51,6 @@ for epoch in range(Epoch):
     for step, (ct, seg) in enumerate(train_dl):
 
         ct = ct.cuda()
-        ct = Variable(ct)
 
         outputs_stage1, outputs_stage2 = net(ct)
         loss = loss_func(outputs_stage1, outputs_stage2, seg)

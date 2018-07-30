@@ -1,5 +1,5 @@
 # abdominal-multi-organ-segmentation
-abdominal multi-organ segmentation using pytorch
+abdominal multi-organ segmentation using pytorch,**pytorch version: 0.4.0**
 
 the data come from an online challenge called **Multi-atlas labeling Beyond the Cranial Vault**, for the detail, you can check this link:**https://www.synapse.org/#!Synapse:syn3193805/wiki/217752**. in this challenge, the task is to segement 13 different kind of organ as follow:
 
@@ -25,15 +25,8 @@ i use mean dice coefficient as metrics.
 |strategy|spleen|right kidney|left kidney|gallbladder|esophagus|liver|stomach|aorta|inferior vena cava|portal vein and splenic vein|pancreas|right adrenal gland|left adrenal gland|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |ava_dice_loss|0.830|0.745|0.712|0.143|0.000|0.880|0.654|0.686|0.605|0.500|0.429|0.089|0.111|
-|ava_dice_loss_with_bg|0.000|0.793|0.753|0.202|0.268|0.865|0.586|0.474|0.344|0.001|0.466|0.126|0.196|
-|genernalised_dice_loss|very bad|---|---|---|---|---|---|---|---|---|---|---|
-|genernalised_dice_loss_with_weight|very bad|---|---|---|---|---|---|---|---|---|---|---|---|
-|ava_dice_loss_with_data_augmentation|0.834|0.763|0.743|0.215|0.203|0.845|0.466|0.002|0.572|0.517|0.481|0.000|0.187|
-|ava_dice_loss_with_norm|0.832|0.796|0.793|0.217|0.010|0.902|0.563|0.483|0.323|0.001|0.421|0.05|0.158|
-|ce_loss|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|Focal_loss|---|---|---|---|---|---|---|---|---|---|---|---|---|
 
-i try different kind of loss functinon,and for data augmentation,i use random rotate and random scale."with norm"mean i normalized the origin ct-hu value to a small range:form ±350 to ±5
+i have implement different kind of loss function, you can try which one work best in your data.
 
 **Here is the best of the above results:**
 <div align=center><img src="https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/bset.png"alt="最好结果三维展示图"/></div>

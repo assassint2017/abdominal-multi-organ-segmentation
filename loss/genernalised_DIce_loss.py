@@ -1,9 +1,6 @@
 """
-
 多分类Dice loss
-
 对于简单的多个dice取平均的扩展
-
 共13种器官＋背景
 (0) 背景
 (1) spleen 脾
@@ -23,7 +20,6 @@
 
 import torch
 import torch.nn as nn
-from torch.autograd import Variable
 
 num_organ = 13
 
@@ -37,7 +33,6 @@ class DiceLoss(nn.Module):
 
     def forward(self, pred_stage1, pred_stage2, target):
         """
-
         :param pred_stage1: 经过放大之后(B, 14, 48, 256, 256)
         :param pred_stage2: (B, 14, 48, 256, 256)
         :param target: (B, 48, 256, 256)
@@ -54,7 +49,6 @@ class DiceLoss(nn.Module):
             # organ_target: (B, 13, 48, 128, 128)
 
         organ_target = organ_target.cuda()
-        organ_target = Variable(organ_target)
 
         # 计算第一阶段的loss
         dice_stage1_numerator = 0.0  # dice系数的分子

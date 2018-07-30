@@ -1,7 +1,5 @@
 """
-
 在五例随机挑选的数据上做测试
-
 共13种器官＋背景
 (0) 背景
 (1) spleen 脾
@@ -23,7 +21,6 @@ import os
 from time import time
 
 import torch
-from torch.autograd import Variable
 import torch.nn.functional as F
 
 import numpy as np
@@ -144,8 +141,6 @@ for file_index, file in enumerate(os.listdir(val_ct_dir)):
             ct_tensor = ct_tensor.unsqueeze(dim=0)
             ct_tensor = ct_tensor.unsqueeze(dim=0)
 
-            ct_tensor = Variable(ct_tensor)
-
             outputs = net(ct_tensor)
             outputs = outputs.squeeze()
 
@@ -168,7 +163,6 @@ for file_index, file in enumerate(os.listdir(val_ct_dir)):
 
     # 使用线性插值将预测的分割结果缩放到原始nii大小
     pred_seg = torch.FloatTensor(pred_seg).unsqueeze(dim=0).unsqueeze(dim=0)
-    pred_seg = Variable(pred_seg)
     pred_seg = F.upsample(pred_seg, seg_array.shape, mode='trilinear').squeeze().detach().numpy()
     pred_seg = np.round(pred_seg).astype(np.uint8)
 

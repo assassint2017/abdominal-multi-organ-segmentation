@@ -1,10 +1,6 @@
 """
-
-ResUNet整体上网络结构基于VNet，做出的修改如下：
-将原本555的卷积核换成了333
-在除了第一个和最后一个block中添加了dropout
-去掉了编码器部分的最后一个16倍降采样的stage
-为了弥补这么做带来的感受野的损失，在编码器的最后两个stage加入了混合空洞卷积
+和ResUnet_dice没有什么区别
+用于CE损失的网络脚本
 """
 
 import torch
@@ -35,113 +31,110 @@ class ResUNet(nn.Module):
 
         self.encoder_stage1 = nn.Sequential(
             nn.Conv3d(inchannel, 16, 3, 1, padding=1),
-            nn.PReLU(16),
+            nn.ELU()
         )
 
         self.encoder_stage2 = nn.Sequential(
             nn.Conv3d(32, 32, 3, 1, padding=1),
-            nn.PReLU(32),
+            nn.ELU(),
 
             nn.Conv3d(32, 32, 3, 1, padding=1),
-            nn.PReLU(32),
+            nn.ELU()
         )
 
         self.encoder_stage3 = nn.Sequential(
             nn.Conv3d(64, 64, 3, 1, padding=1),
-            nn.PReLU(64),
+            nn.ELU(),
 
             nn.Conv3d(64, 64, 3, 1, padding=2, dilation=2),
-            nn.PReLU(64),
+            nn.ELU(),
 
             nn.Conv3d(64, 64, 3, 1, padding=4, dilation=4),
-            nn.PReLU(64),
+            nn.ELU()
         )
 
         self.encoder_stage4 = nn.Sequential(
             nn.Conv3d(128, 128, 3, 1, padding=3, dilation=3),
-            nn.PReLU(128),
+            nn.ELU(),
 
             nn.Conv3d(128, 128, 3, 1, padding=4, dilation=4),
-            nn.PReLU(128),
+            nn.ELU(),
 
             nn.Conv3d(128, 128, 3, 1, padding=5, dilation=5),
-            nn.PReLU(128),
+            nn.ELU()
         )
 
         self.decoder_stage1 = nn.Sequential(
             nn.Conv3d(128, 256, 3, 1, padding=1),
-            nn.PReLU(256),
+            nn.ELU(),
 
             nn.Conv3d(256, 256, 3, 1, padding=1),
-            nn.PReLU(256),
+            nn.ELU(),
 
             nn.Conv3d(256, 256, 3, 1, padding=1),
-            nn.PReLU(256),
+            nn.ELU()
         )
 
         self.decoder_stage2 = nn.Sequential(
             nn.Conv3d(128 + 64, 128, 3, 1, padding=1),
-            nn.PReLU(128),
+            nn.ELU(),
 
             nn.Conv3d(128, 128, 3, 1, padding=1),
-            nn.PReLU(128),
+            nn.ELU(),
 
             nn.Conv3d(128, 128, 3, 1, padding=1),
-            nn.PReLU(128),
+            nn.ELU()
         )
 
         self.decoder_stage3 = nn.Sequential(
             nn.Conv3d(64 + 32, 64, 3, 1, padding=1),
-            nn.PReLU(64),
+            nn.ELU(),
 
             nn.Conv3d(64, 64, 3, 1, padding=1),
-            nn.PReLU(64),
+            nn.ELU()
         )
 
         self.decoder_stage4 = nn.Sequential(
             nn.Conv3d(32 + 16, 32, 3, 1, padding=1),
-            nn.PReLU(32),
+            nn.ELU()
         )
 
         self.down_conv1 = nn.Sequential(
             nn.Conv3d(16, 32, 2, 2),
-            nn.PReLU(32)
+            nn.ELU()
         )
 
         self.down_conv2 = nn.Sequential(
             nn.Conv3d(32, 64, 2, 2),
-            nn.PReLU(64)
+            nn.ELU()
         )
 
         self.down_conv3 = nn.Sequential(
             nn.Conv3d(64, 128, 2, 2),
-            nn.PReLU(128)
+            nn.ELU()
         )
 
         self.down_conv4 = nn.Sequential(
             nn.Conv3d(128, 256, 3, 1, padding=1),
-            nn.PReLU(256)
+            nn.ELU()
         )
 
         self.up_conv2 = nn.Sequential(
             nn.ConvTranspose3d(256, 128, 2, 2),
-            nn.PReLU(128)
+            nn.ELU()
         )
 
         self.up_conv3 = nn.Sequential(
             nn.ConvTranspose3d(128, 64, 2, 2),
-            nn.PReLU(64)
+            nn.ELU()
         )
 
         self.up_conv4 = nn.Sequential(
             nn.ConvTranspose3d(64, 32, 2, 2),
-            nn.PReLU(32)
+            nn.ELU()
         )
 
-        self.map = nn.Sequential(
-            nn.Conv3d(32, num_organ + 1, 1),
-            nn.Softmax(dim=1)
-        )
+        self.map = nn.Conv3d(32, num_organ + 1, 1)
 
     def forward(self, inputs):
 
@@ -186,7 +179,7 @@ class ResUNet(nn.Module):
 
         outputs = self.map(outputs)
 
-        # 返回概率图
+        # 返回不经过softmax归一化的概率图
         return outputs
 
 
@@ -215,13 +208,18 @@ class Net(nn.Module):
 
         # 得到第一阶段的结果
         output_stage1 = self.stage1(inputs_stage1)
-        output_stage1 = F.upsample(output_stage1, (48, 256, 256), mode='trilinear')
+        temp = F.upsample(output_stage1, (48, 256, 256), mode='trilinear')
+        output_stage1 = F.upsample(output_stage1, (48, 512, 512), mode='trilinear')
+
+        # 将第一阶段的结果经过softmax归一化成概率图之后再与原始输入进行拼接
+        temp = F.softmax(temp, dim=1)
 
         # 将第一阶段的结果与原始输入数据进行拼接作为第二阶段的输入
-        inputs_stage2 = torch.cat((output_stage1, inputs), dim=1)
+        inputs_stage2 = torch.cat((temp, inputs), dim=1)
 
         # 得到第二阶段的结果
         output_stage2 = self.stage2(inputs_stage2)
+        output_stage2 = F.upsample(output_stage2, (48, 512, 512), mode='trilinear')
 
         if self.training is True:
             return output_stage1, output_stage2
@@ -265,3 +263,4 @@ net.apply(init)
 #
 #
 # print(num_parameter)
+

@@ -44,7 +44,7 @@ for ct_file in os.listdir(ct_path):
 
     # 对CT和金标准使用插值算法进行插值来统一轴向的spacing，插值之后的array依然是int类型
     ct_array = ndimage.zoom(ct_array, (ct.GetSpacing()[-1] / slice_thickness, down_scale, down_scale), order=3)
-    
+
     # 对金标准插值不应该使用高级插值方式，这样会破坏边界部分，总之这次错误也说明了检查数据的重要性
     seg_array = ndimage.zoom(seg_array, (ct.GetSpacing()[-1] / slice_thickness, down_scale, down_scale), order=0)
 
@@ -102,4 +102,3 @@ for ct_file in os.listdir(ct_path):
     print('-----------')
 
     file_index += 1
-

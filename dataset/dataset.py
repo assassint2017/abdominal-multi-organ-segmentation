@@ -1,5 +1,4 @@
 """
-
 随机取样方式下的数据集
 """
 
@@ -25,7 +24,6 @@ class Dataset(dataset):
 
     def __getitem__(self, index):
         """
-
         :param index:
         :return: torch.Size([B, 1, 48, 256, 256]) torch.Size([B, 48, 256, 256])
         """

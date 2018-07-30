@@ -1,13 +1,10 @@
 """
-
 多分类Dice loss
-
 使用最简单的策略：多个dice取平均
 """
 
 import torch
 import torch.nn as nn
-from torch.autograd import Variable
 
 num_organ = 13
 
@@ -18,7 +15,6 @@ class DiceLoss(nn.Module):
 
     def forward(self, pred_stage1, pred_stage2, target):
         """
-
         :param pred_stage1: 经过放大之后(B, 14, 48, 256, 256)
         :param pred_stage2: (B, 14, 48, 256, 256)
         :param target: (B, 48, 256, 256)
@@ -35,7 +31,6 @@ class DiceLoss(nn.Module):
             # organ_target: (B, 13, 48, 128, 128)
 
         organ_target = organ_target.cuda()
-        organ_target = Variable(organ_target)
 
         # 计算第一阶段的loss
         dice_stage1 = 0.0

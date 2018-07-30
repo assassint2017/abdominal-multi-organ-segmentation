@@ -1,5 +1,4 @@
 """
-
 和dataset.py脚本完全一样
 只不过带有数据增强
 """
@@ -31,7 +30,6 @@ class Dataset(dataset):
 
     def __getitem__(self, index):
         """
-
         :param index:
         :return: torch.Size([B, 1, 48, 256, 256]) torch.Size([B, 48, 256, 256])
         """
