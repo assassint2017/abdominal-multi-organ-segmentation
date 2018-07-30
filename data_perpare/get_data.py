@@ -1,8 +1,6 @@
 """
-
 30例训练集中 3mm有17个，2.5mm有1个，5mm有12个
 因此决定把轴向的sapcing统一到3mm，然后进行灰度值截断
-
 对于图像的预处理，目前也就包括这两项
 """
 
@@ -44,9 +42,11 @@ for ct_file in os.listdir(ct_path):
     seg = sitk.ReadImage(os.path.join(seg_path, ct_file.replace('img', 'label')), sitk.sitkInt8)
     seg_array = sitk.GetArrayFromImage(seg)
 
-    # 对CT和金标准使用双三次算法进行插值来统一轴向的spacing，插值之后的array依然是int类型
+    # 对CT和金标准使用插值算法进行插值来统一轴向的spacing，插值之后的array依然是int类型
     ct_array = ndimage.zoom(ct_array, (ct.GetSpacing()[-1] / slice_thickness, down_scale, down_scale), order=3)
-    seg_array = ndimage.zoom(seg_array, (ct.GetSpacing()[-1] / slice_thickness, down_scale, down_scale), order=3)
+    
+    # 对金标准插值不应该使用高级插值方式，这样会破坏边界部分，总之这次错误也说明了检查数据的重要性
+    seg_array = ndimage.zoom(seg_array, (ct.GetSpacing()[-1] / slice_thickness, down_scale, down_scale), order=0)
 
     # 将灰度值在阈值之外的截断掉
     ct_array[ct_array > upper] = upper
@@ -102,3 +102,4 @@ for ct_file in os.listdir(ct_path):
     print('-----------')
 
     file_index += 1
+
