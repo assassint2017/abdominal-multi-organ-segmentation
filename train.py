@@ -55,7 +55,7 @@ for epoch in range(Epoch):
         outputs_stage1, outputs_stage2 = net(ct)
         loss = loss_func(outputs_stage1, outputs_stage2, seg)
 
-        mean_loss.append(loss.data[0])
+        mean_loss.append(loss.item())
 
         opt.zero_grad()
         loss.backward()
@@ -63,11 +63,11 @@ for epoch in range(Epoch):
 
         if step % 4 is 0:
             print('epoch:{}, step:{}, loss:{:.3f}, time:{:.3f} min'
-                  .format(epoch, step, loss.data[0], (time() - start) / 60))
+                  .format(epoch, step, loss.item(), (time() - start) / 60))
 
     mean_loss = sum(mean_loss) / len(mean_loss)
 
     # 每十个个epoch保存一次模型参数
     # 网络模型的命名方式为：epoch轮数+当前minibatch的loss+本轮epoch的平均loss
     if epoch % 10 is 0:
-        torch.save(net.state_dict(), './module/net{}-{:.3f}-{:.3f}.pth'.format(epoch, loss.data[0], mean_loss))
+        torch.save(net.state_dict(), './module/net{}-{:.3f}-{:.3f}.pth'.format(epoch, loss.item(), mean_loss))
