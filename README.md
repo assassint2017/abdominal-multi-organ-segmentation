@@ -1,32 +1,32 @@
 # abdominal-multi-organ-segmentation
 abdominal multi-organ segmentation using pytorch,**pytorch version: 0.4.0**
 
-the data come from an online challenge called **Multi-atlas labeling Beyond the Cranial Vault**, for the detail, you can check this link:**https://www.synapse.org/#!Synapse:syn3193805/wiki/217752**. in this challenge, the task is to segement 13 different kind of organ as follow:
+The data come from an online challenge called **Multi-atlas labeling Beyond the Cranial Vault**, for the detail, you can check this link:**https://www.synapse.org/#!Synapse:syn3193805/wiki/217752**. in this challenge, the task is to segment 13 different kind of organ as follow:
 
 <div align=center><img src="https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/abdomen_overview_small.png" alt="各器官说明图"/></div>
 
 ## data management
-i use the trainging set given by the competition organizer. The training set include 30 CT data.I randomly divided it into 25 for training and 5 for evaluation. and organize them as follow:
+I use the training set given by the competition organizer. The training set include 30 CT data. I randomly divided it into 25 for training and 5 for evaluation, and organize them as follow:
 
 <div align=center><img src="https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/data_management.png"alt="数据管理示意图"/></div>
 
 ## data process
-i normalized the axial spacing to 3mm. and truncated the hu value to a certain range. only the slice contain organ are used to train the network.
+I normalized the axial spacing to 3mm, and truncated the hu value to a certain range. Only the slice contain organ are used to train the network.
 
 ## network architecture
-i use two u-shape like 3D FCN, and add residual connection at a certain group of convlayers. In order to increase the receptive field，i add some hybrid dilated convlayer to the last two stage of the encoder.most idea come form [1].
+I use two u-shape like 3D FCN, and add residual connection at a certain group of convlayers. In order to increase the receptive field，I add some hybrid dilated convlayer to the last two stage of the encoder. Most of idea come from [1].
 
 ## implementation detail
-i use adam optim and set the initial learning rate to 1e-4, train on three GTX 1080TI with batch size equal to three.the whole trainging process take about 13 hours.
+I use adam optim and set the initial learning rate to 1e-4, train on three GTX 1080TI with batch size equal to three. The whole training process take about 13 hours.
 
 ## result
-i use mean dice coefficient as metrics.
+I use mean dice coefficient as metrics.
 
 |strategy|spleen|right kidney|left kidney|gallbladder|esophagus|liver|stomach|aorta|inferior vena cava|portal vein and splenic vein|pancreas|right adrenal gland|left adrenal gland|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |ava_dice_loss|0.830|0.745|0.712|0.143|0.000|0.880|0.654|0.686|0.605|0.500|0.429|0.089|0.111|
 
-i have implement different kind of loss function, you can try which one work best in your data.
+I have implement different kind of loss function, you can try which one work best in your data.
 
 **Here is the best of the above results:**
 <div align=center><img src="https://github.com/assassint2017/abdominal-multi-organ-segmentation/blob/master/img/bset.png"alt="最好结果三维展示图"/></div>
